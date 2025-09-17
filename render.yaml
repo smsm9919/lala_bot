@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: doge-bot-balanced-flex
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 1 -b 0.0.0.0:$PORT runner:app
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: BOT_MODULE
+        value: "bot"
+      - key: PING_INTERVAL_SECONDS
+        value: "60"
